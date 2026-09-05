@@ -1559,6 +1559,9 @@ export default function AdminDashboard() {
     try {
       setDeletingId(row.id);
 
+      let registrationId = null;
+      let primaryParticipantId = null;
+
       const {
         data: registrationRow,
         error: regLookupError,
@@ -1569,86 +1572,109 @@ export default function AdminDashboard() {
         .maybeSingle();
 
       if (regLookupError) {
-        console.error(
-          "[AdminDashboard] Failed to look up registration:",
-          regLookupError
-        );
-        throw new Error(
-          "Could not find the associated registration record."
+        console.warn(
+          "[AdminDashboard] Registration lookup failed (RLS or missing record):",
+          regLookupError.code,
+          regLookupError.message
         );
       }
 
-      if (!registrationRow) {
-        throw new Error(
-          "No matching registration found for " +
-            (row.registration_number || "this record") +
-            ". The registration data may have already been removed."
-        );
+      if (registrationRow) {
+        registrationId = registrationRow.id;
+        primaryParticipantId =
+          registrationRow.primary_participant_id;
       }
 
-      const registrationId = registrationRow.id;
-      const primaryParticipantId =
-        registrationRow.primary_participant_id;
-
-      const { data: memberRows } = await supabase
-        .from("registration_members")
-        .select("participant_id")
-        .eq("registration_id", registrationId);
-
-      const memberParticipantIds = (memberRows || [])
-        .map((m) => m.participant_id)
-        .filter(Boolean);
-
-      const allParticipantIds = [
-        ...new Set([
-          primaryParticipantId,
-          ...memberParticipantIds,
-        ].filter(Boolean)),
-      ];
-
-      await supabase
-        .from("registration_members")
-        .delete()
-        .eq("registration_id", registrationId);
-
-      await supabase
-        .from("registration_events")
-        .delete()
-        .eq("registration_id", registrationId);
-
-      await supabase
-        .from("payments")
-        .delete()
-        .eq("registration_id", registrationId);
-
-      await supabase
-        .from("registrations")
-        .delete()
-        .eq("id", registrationId);
-
-      for (const pid of allParticipantIds) {
-        const { data: otherReg } = await supabase
-          .from("registrations")
-          .select("id")
-          .eq("primary_participant_id", pid)
-          .neq("id", registrationId)
-          .limit(1);
-
-        if (otherReg && otherReg.length > 0) continue;
-
-        const { data: otherMember } = await supabase
+      if (registrationId) {
+        const { data: memberRows } = await supabase
           .from("registration_members")
-          .select("id")
-          .eq("participant_id", pid)
-          .neq("registration_id", registrationId)
-          .limit(1);
+          .select("participant_id")
+          .eq("registration_id", registrationId);
 
-        if (otherMember && otherMember.length > 0) continue;
+        const memberParticipantIds = (memberRows || [])
+          .map((m) => m.participant_id)
+          .filter(Boolean);
+
+        const allParticipantIds = [
+          ...new Set([
+            primaryParticipantId,
+            ...memberParticipantIds,
+          ].filter(Boolean)),
+        ];
 
         await supabase
-          .from("participants")
+          .from("registration_members")
           .delete()
-          .eq("id", pid);
+          .eq("registration_id", registrationId);
+
+        await supabase
+          .from("registration_events")
+          .delete()
+          .eq("registration_id", registrationId);
+
+        await supabase
+          .from("payments")
+          .delete()
+          .eq("registration_id", registrationId);
+
+        await supabase
+          .from("registrations")
+          .delete()
+          .eq("id", registrationId);
+
+        for (const pid of allParticipantIds) {
+          const { data: otherReg } = await supabase
+            .from("registrations")
+            .select("id")
+            .eq("primary_participant_id", pid)
+            .neq("id", registrationId)
+            .limit(1);
+
+          if (otherReg && otherReg.length > 0) continue;
+
+          const { data: otherMember } = await supabase
+            .from("registration_members")
+            .select("id")
+            .eq("participant_id", pid)
+            .neq("registration_id", registrationId)
+            .limit(1);
+
+          if (otherMember && otherMember.length > 0)
+            continue;
+
+          await supabase
+            .from("participants")
+            .delete()
+            .eq("id", pid);
+        }
+      } else {
+        console.warn(
+          "[AdminDashboard] Falling back to overall-only cleanup for",
+          row.registration_number
+        );
+
+        await supabase
+          .from("registrations")
+          .delete()
+          .eq("registration_number", row.registration_number);
+
+        const { data: participantRow } = await supabase
+          .from("participants")
+          .select("id")
+          .eq("email", row.email)
+          .maybeSingle();
+
+        if (participantRow) {
+          await supabase
+            .from("registration_members")
+            .delete()
+            .eq("participant_id", participantRow.id);
+
+          await supabase
+            .from("participants")
+            .delete()
+            .eq("id", participantRow.id);
+        }
       }
 
       await supabase
