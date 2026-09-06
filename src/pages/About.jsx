@@ -46,6 +46,11 @@ const sponsors = [
     blurb: "Authentic Tibetan momos with savory fillings and traditional steamed preparation, bringing the taste of the Himalayas to every bite.",
     logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788628223/ChatGPT_Image_Sep_5_2026_10_40_05_PM_iwxbjz.png",
   },
+  {
+    name: "JN creations",
+    blurb: "Seller of exquisite ornaments, adding charm and elegance to everyday occasions.",
+    logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788711528/JN_Creations_y4suxz.jpg",
+  },
 ];
 
 function SponsorTier({ sponsors }) {
