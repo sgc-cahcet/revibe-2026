@@ -1677,10 +1677,10 @@ export default function AdminDashboard() {
         }
       }
 
-      const { error: overallDeleteError } = await supabase
-        .from("overall")
-        .delete()
-        .eq("id", row.id);
+      const { error: overallDeleteError } = await supabase.rpc(
+        "delete_registration",
+        { p_overall_id: row.id }
+      );
 
       if (overallDeleteError) {
         console.error(
