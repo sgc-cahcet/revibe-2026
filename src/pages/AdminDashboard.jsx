@@ -1677,10 +1677,20 @@ export default function AdminDashboard() {
         }
       }
 
-      await supabase
+      const { error: overallDeleteError } = await supabase
         .from("overall")
         .delete()
         .eq("id", row.id);
+
+      if (overallDeleteError) {
+        console.error(
+          "[AdminDashboard] Failed to delete overall record:",
+          overallDeleteError
+        );
+        throw new Error(
+          "Failed to delete registration: " + overallDeleteError.message
+        );
+      }
 
       setRows((currentRows) =>
         currentRows.filter((r) => r.id !== row.id)
