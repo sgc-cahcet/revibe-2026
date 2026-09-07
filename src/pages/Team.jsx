@@ -64,7 +64,7 @@ const teams = [
     blurb:
       "The wordsmiths of the web, spinning the narrative thread that runs through every page.",
     members: [
-      { name: "Shafifa Naaz", dept: "IV Year IT", lead: true, photo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1787941459/Shaffu_Naaz_fpygq3.jpg" },
+      { name: "Shafifa Naaz", dept: "IV Year IT", lead: true, photo: "" },
       { name: "Samiiksha C", dept: "III Year CSE", photo: "https://res.cloudinary.com/dnbifmfhl/image/upload/v1774977981/WhatsApp_Image_2026-03-31_at_10.45.05_PM_rzanjh.jpg" },
       { name: "Sanga Illakiya. S", dept: "II Year CSE", photo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1787935199/Sanga_Ilakiya_mhftws.png" },
     ],
