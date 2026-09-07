@@ -359,8 +359,10 @@ export default function NotFound() {
           outline: none;
         }
 
-        .nf-input:focus {
+        .nf-input:focus-visible {
           border: 2px solid #ff006e;
+          outline: 2px solid #ff006e;
+          outline-offset: 2px;
         }
 
         .nf-go {
@@ -381,6 +383,11 @@ export default function NotFound() {
         .nf-go:hover {
           transform: translate(-2px, -2px);
           box-shadow: 4px 4px 0 #1a1a1a;
+        }
+
+        .nf-go:focus-visible {
+          outline: 2px solid #ffffff;
+          outline-offset: 2px;
         }
 
         .nf-links {
@@ -408,6 +415,17 @@ export default function NotFound() {
           color: #e0e0e0;
         }
 
+        .nf-btn:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nf-btn:focus-visible {
+          outline: 2px solid #ff006e;
+          outline-offset: 2px;
+          border-color: #ff006e;
+        }
+
         .nf-btn--primary {
           background: #ff006e;
           color: #ffffff;
@@ -416,8 +434,13 @@ export default function NotFound() {
         }
 
         .nf-btn--primary:hover {
-          transform: translate(-2px, -2px);
+          transform: translate(-2px, -2px) scale(1.02);
           box-shadow: 6px 6px 0 #1a1a1a;
+        }
+
+        .nf-btn--primary:focus-visible {
+          outline: 2px solid #ffffff;
+          outline-offset: 2px;
         }
 
         .nf-btn--ghost {
@@ -429,6 +452,11 @@ export default function NotFound() {
           background: rgba(255, 0, 110, 0.1);
           border-color: #ff006e;
           color: #ff006e;
+        }
+
+        .nf-btn--ghost:focus-visible {
+          outline: 2px solid #ff006e;
+          outline-offset: 2px;
         }
 
         .nf-path {
@@ -457,18 +485,25 @@ export default function NotFound() {
           }
 
           .nf-input {
-            border-right: 2px solid #1a1a1a;
-            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.5);
           }
 
           .nf-go {
-            border-radius: 10px;
+            border-radius: 12px;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
           .nf-code-zero {
             animation: none;
+          }
+
+          .nf-code-zero,
+          .nf-code-zero::before,
+          .nf-code-zero::after {
+            animation: none !important;
           }
         }
       `}</style>
