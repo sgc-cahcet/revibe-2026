@@ -51,6 +51,16 @@ const sponsors = [
     blurb: "Seller of exquisite ornaments, adding charm and elegance to everyday occasions.",
     logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788711528/JN_Creations_y4suxz.jpg",
   },
+  {
+    name: "Fuszz Studio",
+    blurb: "Fussz Studo is a creative brand that turns personal memories into unique, handcrafted keepsakes. They specialize in custom-made products that capture the essence of special moments, allowing customers to preserve their cherished memories in a tangible and artistic way.",
+    logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788885497/Fussz_Studios_ndww6s.jpg",
+  },
+  {
+    name: "Moon Pearls",
+    blurb: "A trusted seller of exquisite ornaments, offering beautifully crafted pieces that add a touch of charm, elegance, and timeless sophistication to every special moment and everyday occasion.",
+    logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788885497/Moon_Pearls_tetmlh.jpg",
+  },
 ];
 
 function SponsorTier({ sponsors }) {
