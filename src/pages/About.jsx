@@ -106,7 +106,7 @@ const sponsors = [
   {
     name: "Wingsonn Holidays",
     blurb: "Offers tour packages and travel services designed to make vacations convienient, enjoyable and memorable.",
-    logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788976182/Winsonn_r572ur.jpg,
+    logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788976182/Winsonn_r572ur.jpg",
   },
 ];
 
