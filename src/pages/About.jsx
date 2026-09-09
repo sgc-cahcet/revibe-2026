@@ -98,6 +98,16 @@ const sponsors = [
     blurb: "A trusted seller of exquisite ornaments, offering beautifully crafted pieces that add a touch of charm, elegance, and timeless sophistication to every special moment and everyday occasion.",
     logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788885497/Moon_Pearls_tetmlh.jpg",
   },
+  {
+    name: "Doods Holidays",
+    blurb: "Provides a wide range of tour packages and travel experiences tailored to different destinations and travel preferences.",
+    logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788976182/Doods_holidasy_lka9w1.jpg",
+  },
+  {
+    name: "Wingsonn Holidays",
+    blurb: "Offers tour packages and travel services designed to make vacations convienient, enjoyable and memorable.",
+    logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788976182/Winsonn_r572ur.jpg,
+  },
 ];
 
 function SponsorTier({ sponsors }) {
