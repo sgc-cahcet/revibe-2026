@@ -414,6 +414,9 @@ function exportToPDF(rows, eventLabel) {
 
   rows.forEach((row) => {
     const participants = getAllParticipants(row);
+    const isTeam = normalize(row?.registration_type) === "team";
+    const teamName = isTeam ? (row?.team_name || "—") : "-";
+
     const list = participants.length > 0 ? participants : [normalizeParticipant({
       full_name: row?.full_name,
       email: row?.email,
@@ -429,6 +432,7 @@ function exportToPDF(rows, eventLabel) {
         p.college_name || "—",
         p.department || "—",
         p.phone || "—",
+        teamName,
         isPaid(row) ? "Paid" : "Pending",
       ]);
       serialNo++;
@@ -437,33 +441,38 @@ function exportToPDF(rows, eventLabel) {
 
   autoTable(doc, {
     startY: 32,
-    head: [["Serial No", "Name", "College Name", "Department", "Phone Number", "Paid Status"]],
+    head: [["Serial No", "Name", "College Name", "Department", "Phone Number", "Team Name", "Paid Status"]],
     body: tableData,
     theme: "grid",
     styles: {
       font: "helvetica",
-      fontSize: 9,
-      cellPadding: 4,
+      fontSize: 8.5,
+      cellPadding: 3.5,
       overflow: "linebreak",
       halign: "left",
       valign: "middle",
+      lineColor: [30, 30, 30],
+      lineWidth: 0.4,
     },
     headStyles: {
       fillColor: [239, 68, 68],
       textColor: [255, 255, 255],
       fontStyle: "bold",
-      fontSize: 10,
+      fontSize: 9.5,
+      lineColor: [180, 30, 30],
+      lineWidth: 0.6,
     },
     columnStyles: {
-      0: { cellWidth: 18 },
-      1: { cellWidth: 50 },
-      2: { cellWidth: 60 },
-      3: { cellWidth: 40 },
-      4: { cellWidth: 32 },
-      5: { cellWidth: 25 },
+      0: { cellWidth: 14 },
+      1: { cellWidth: 42 },
+      2: { cellWidth: 50 },
+      3: { cellWidth: 32 },
+      4: { cellWidth: 28 },
+      5: { cellWidth: 35 },
+      6: { cellWidth: 22 },
     },
     didParseCell: function (data) {
-      if (data.section === "body" && data.column.index === 5) {
+      if (data.section === "body" && data.column.index === 6) {
         const val = String(data.cell.raw);
         if (val === "Paid") {
           data.cell.styles.textColor = [22, 163, 74];
@@ -474,7 +483,7 @@ function exportToPDF(rows, eventLabel) {
         }
       }
     },
-    margin: { left: 10, right: 10 },
+    margin: { left: 8, right: 8 },
   });
 
   const filename = eventLabel
