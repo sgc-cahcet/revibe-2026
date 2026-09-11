@@ -134,27 +134,37 @@ export default function NotFound() {
 
   return (
     <>
-      <main className="nf-page">
-        <SpiderWeb className="nf-web nf-web--tl" />
-        <SpiderWeb className="nf-web nf-web--tr" />
-        <SpiderWeb className="nf-web nf-web--bl" />
-        <SpiderWeb className="nf-web nf-web--br" />
+<main className="nf-page">
+          <SpiderWeb className="nf-web nf-web--tl" />
+          <SpiderWeb className="nf-web nf-web--tr" />
+          <SpiderWeb className="nf-web nf-web--bl" />
+          <SpiderWeb className="nf-web nf-web--br" />
 
-        <canvas ref={canvasRef} className="nf-canvas" aria-hidden="true" />
+          <canvas ref={canvasRef} className="nf-canvas" aria-hidden="true" />
 
-        <div className="nf-container">
-          <p className="nf-kicker">REVIBE '26 · ERROR</p>
+          <div className="nf-card">
+            <p className="nf-kicker">REVIBE '26 · ERROR</p>
 
-          <h1 className="nf-code">
-            4<span className="nf-code-zero">0</span>4
-          </h1>
+            <h1 className="nf-code">
+              4<span className="nf-code-zero">0</span>4
+            </h1>
 
-          <p className="nf-headline">Tangled in the wrong web.</p>
+            <p className="nf-headline">Tangled in the wrong web.</p>
 
-          <p className="nf-body">
-            The strand you followed leads nowhere. The page you're looking for
-            has been cut from the web — or maybe it was never spun at all.
-          </p>
+            <p className="nf-body">
+              The strand you followed leads nowhere. The page you're looking for
+              has been cut from the web — or maybe it was never spun at all.
+            </p>
+
+            {suggestion && (
+              <p className="nf-suggestion">
+                Did you mean{" "}
+                <Link to={suggestion} className="nf-suggestion-link">
+                  {suggestion === "/" ? "Home" : suggestion.replace("/", "")}
+                </Link>
+                ?
+              </p>
+            )}
 
           {suggestion && (
             <p className="nf-suggestion">
@@ -209,12 +219,17 @@ export default function NotFound() {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: #f5f5f5;
-          color: #1a1a1a;
+          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+          color: #e0e0e0;
           overflow: hidden;
           font-family: 'Hanken Grotesk', sans-serif;
           padding: 48px 16px;
           box-sizing: border-box;
+        }
+
+        .nf-page .nf-card {
+          background: rgba(255, 255, 255, 0.9);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
         }
 
         .nf-canvas {
@@ -239,12 +254,17 @@ export default function NotFound() {
         .nf-web--bl { bottom: 0; left: 0; width: 140px; height: 140px; transform: scaleY(-1); }
         .nf-web--br { bottom: 0; right: 0; width: 160px; height: 160px; transform: rotate(180deg); }
 
-        .nf-container {
+        .nf-card {
           position: relative;
           z-index: 1;
           text-align: center;
           max-width: 640px;
           width: 100%;
+          background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+          border-radius: 20px;
+          padding: 40px 32px;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+          margin: 0 auto;
         }
 
         .nf-kicker {
@@ -254,7 +274,7 @@ export default function NotFound() {
           font-weight: 700;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: #dc0000;
+          color: #ff006e;
         }
 
         .nf-code {
@@ -264,8 +284,9 @@ export default function NotFound() {
           font-size: clamp(72px, 18vw, 160px);
           line-height: 0.9;
           letter-spacing: 0.02em;
-          color: #1a1a1a;
+          color: #e0e0e0;
           text-transform: uppercase;
+          text-shadow: 0 0 30px rgba(255, 0, 110, 0.4);
         }
 
         .nf-code-zero {
@@ -284,7 +305,7 @@ export default function NotFound() {
           font-family: 'Anton', sans-serif;
           font-size: clamp(20px, 4vw, 32px);
           letter-spacing: 0.04em;
-          color: #dc0000;
+          color: #ff006e;
           text-transform: uppercase;
         }
 
@@ -293,25 +314,26 @@ export default function NotFound() {
           max-width: 480px;
           font-size: 16px;
           line-height: 26px;
-          color: #3a3a3a;
+          color: #c0c0c0;
         }
 
         .nf-suggestion {
           margin: 0 0 24px;
           font-family: 'JetBrains Mono', monospace;
           font-size: 13px;
-          color: #6a6a6a;
+          color: #888888;
         }
 
         .nf-suggestion-link {
-          color: #dc0000;
+          color: #ff006e;
           font-weight: 700;
           text-decoration: none;
-          border-bottom: 1px dashed rgba(220, 0, 0, 0.4);
+          border-bottom: 1px dashed rgba(255, 0, 110, 0.4);
         }
 
         .nf-suggestion-link:hover {
           border-bottom-style: solid;
+          color: #ff3380;
         }
 
         .nf-search {
@@ -319,15 +341,17 @@ export default function NotFound() {
           gap: 0;
           max-width: 360px;
           margin: 0 auto 28px;
+          background: rgba(255, 255, 255, 0.8);
+          border-radius: 16px;
+          padding: 4px;
         }
 
         .nf-input {
           flex: 1;
           min-width: 0;
           padding: 12px 16px;
-          border: 2px solid #1a1a1a;
-          border-right: none;
-          border-radius: 10px 0 0 10px;
+          border: none;
+          border-radius: 12px;
           background: #ffffff;
           font-family: 'JetBrains Mono', monospace;
           font-size: 13px;
@@ -335,27 +359,35 @@ export default function NotFound() {
           outline: none;
         }
 
-        .nf-input:focus {
-          border-color: #dc0000;
+        .nf-input:focus-visible {
+          border: 2px solid #ff006e;
+          outline: 2px solid #ff006e;
+          outline-offset: 2px;
         }
 
         .nf-go {
           padding: 12px 22px;
-          border: 2px solid #1a1a1a;
-          border-radius: 0 10px 10px 0;
-          background: #1a1a1a;
+          border: 2px solid #ff006e;
+          border-radius: 12px;
+          background: #ff006e;
           color: #ffffff;
           font-family: 'Anton', sans-serif;
           font-size: 14px;
           letter-spacing: 0.06em;
           text-transform: uppercase;
           cursor: pointer;
-          transition: background 0.2s ease, color 0.2s ease;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          min-width: 80px;
         }
 
         .nf-go:hover {
-          background: #dc0000;
-          border-color: #dc0000;
+          transform: translate(-2px, -2px);
+          box-shadow: 4px 4px 0 #1a1a1a;
+        }
+
+        .nf-go:focus-visible {
+          outline: 2px solid #ffffff;
+          outline-offset: 2px;
         }
 
         .nf-links {
@@ -370,7 +402,7 @@ export default function NotFound() {
           display: inline-flex;
           align-items: center;
           padding: 12px 26px;
-          border: 2px solid #1a1a1a;
+          border: 2px solid rgba(255, 255, 255, 0.3);
           border-radius: 10px;
           font-family: 'Anton', sans-serif;
           font-size: 15px;
@@ -379,35 +411,58 @@ export default function NotFound() {
           text-decoration: none;
           cursor: pointer;
           transition: transform 0.2s ease, box-shadow 0.2s ease;
+          background: transparent;
+          color: #e0e0e0;
+        }
+
+        .nf-btn:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nf-btn:focus-visible {
+          outline: 2px solid #ff006e;
+          outline-offset: 2px;
+          border-color: #ff006e;
         }
 
         .nf-btn--primary {
-          background: #dc0000;
+          background: #ff006e;
           color: #ffffff;
-          border-color: #dc0000;
+          border-color: #ff006e;
           box-shadow: 4px 4px 0 #1a1a1a;
         }
 
         .nf-btn--primary:hover {
-          transform: translate(-2px, -2px);
+          transform: translate(-2px, -2px) scale(1.02);
           box-shadow: 6px 6px 0 #1a1a1a;
+        }
+
+        .nf-btn--primary:focus-visible {
+          outline: 2px solid #ffffff;
+          outline-offset: 2px;
         }
 
         .nf-btn--ghost {
           background: transparent;
-          color: #1a1a1a;
+          color: #e0e0e0;
         }
 
         .nf-btn--ghost:hover {
-          background: rgba(220, 0, 0, 0.08);
-          border-color: #dc0000;
-          color: #dc0000;
+          background: rgba(255, 0, 110, 0.1);
+          border-color: #ff006e;
+          color: #ff006e;
+        }
+
+        .nf-btn--ghost:focus-visible {
+          outline: 2px solid #ff006e;
+          outline-offset: 2px;
         }
 
         .nf-path {
           font-family: 'JetBrains Mono', monospace;
           font-size: 11px;
-          color: #999;
+          color: #666;
           margin: 0;
         }
 
@@ -430,18 +485,25 @@ export default function NotFound() {
           }
 
           .nf-input {
-            border-right: 2px solid #1a1a1a;
-            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.5);
           }
 
           .nf-go {
-            border-radius: 10px;
+            border-radius: 12px;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
           .nf-code-zero {
             animation: none;
+          }
+
+          .nf-code-zero,
+          .nf-code-zero::before,
+          .nf-code-zero::after {
+            animation: none !important;
           }
         }
       `}</style>

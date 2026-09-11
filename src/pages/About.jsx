@@ -1,23 +1,60 @@
-import { Link } from "react-router-dom";
+import DriftWall from "../components/DriftWall";
 import SpiderWeb from "../components/navigation/SpiderWeb";
 
-const galleryItems = [
+const driftWallItems = [
   {
-    src: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788092006/IMG_2481_pgbib0.jpg",
-    alt: "REVIBE previous edition highlights",
+    image: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788092006/IMG_2481_pgbib0.jpg",
+    title: "REVIBE '24",
   },
   {
-    src: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788092056/IMG_2819_zgcaav.jpg",
-    alt: "REVIBE previous edition highlights",
+    image: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788092056/IMG_2819_zgcaav.jpg",
+    title: "REVIBE '24",
   },
   {
-    src: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788092056/IMG_20240427_171249_ztrtka.jpg",
-    alt: "REVIBE previous edition highlights",
+    image: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788092056/IMG_20240427_171249_ztrtka.jpg",
+    title: "REVIBE '24",
   },
   {
-    src: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788092047/IMG_2672_p41z5f.jpg",
-    alt: "REVIBE previous edition highlights",
+    image: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788092047/IMG_2672_p41z5f.jpg",
+    title: "REVIBE '24",
   },
+
+
+  {
+    image: "https://res.cloudinary.com/dbqjkjl0c/image/upload/v1788892570/WhatsApp_Image_2026-09-08_at_11.40.50_PM_z5imij.jpg",
+    title: "REVIBE '24",
+  },
+  {
+    image: "https://res.cloudinary.com/dbqjkjl0c/image/upload/v1788892570/WhatsApp_Image_2026-09-08_at_11.40.52_PM_md8vks.jpg",
+    title: "REVIBE '24",
+  },
+  {
+    image: "https://res.cloudinary.com/dbqjkjl0c/image/upload/v1788892570/WhatsApp_Image_2026-09-08_at_11.40.51_PM_rsf8kj.jpg",
+    title: "REVIBE '24",
+  },
+  {
+    image: "https://res.cloudinary.com/dbqjkjl0c/image/upload/v1788892569/WhatsApp_Image_2026-09-08_at_11.40.53_PM_uu62s0.jpg",
+    title: "REVIBE '24",
+  },
+
+
+  {
+    image: "https://res.cloudinary.com/dbqjkjl0c/image/upload/v1788892569/WhatsApp_Image_2026-09-08_at_11.40.57_PM_wumwhz.jpg",
+    title: "REVIBE '24",
+  },
+  {
+    image: "https://res.cloudinary.com/dbqjkjl0c/image/upload/v1788892570/WhatsApp_Image_2026-09-08_at_11.40.54_PM_1_howjry.jpg",
+    title: "REVIBE '24",
+  },
+  {
+    image: "https://res.cloudinary.com/dbqjkjl0c/image/upload/v1788892569/WhatsApp_Image_2026-09-08_at_11.40.54_PM_cieifq.jpg",
+    title: "REVIBE '24",
+  },
+  {
+    image: "https://res.cloudinary.com/dbqjkjl0c/image/upload/v1788892569/WhatsApp_Image_2026-09-08_at_11.40.58_PM_w8eq4a.jpg",
+    title: "REVIBE '24",
+  },
+
 ];
 
 const sponsors = [
@@ -34,7 +71,7 @@ const sponsors = [
   {
     name: "K.V. CAFE",
     blurb: "From crispy fry favourites and steamed momos to fresh juices, milkshakes and refreshing mojitos, K.V. CAFE serves up a tasty variety for every craving — with favourites starting from just ₹20.",
-    logo: "https://res.cloudinary.com/dbqjkjl0c/image/upload/v1788458142/KVCAFE_grrify.jpg",
+    logo: "https://res.cloudinary.com/dbqjkjl0c/image/upload/v1788885098/KVCAFE_z2fcea.jpg",
   },
   {
     name: "Funk It",
@@ -45,6 +82,31 @@ const sponsors = [
     name: "Tibet Momo",
     blurb: "Authentic Tibetan momos with savory fillings and traditional steamed preparation, bringing the taste of the Himalayas to every bite.",
     logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788628223/ChatGPT_Image_Sep_5_2026_10_40_05_PM_iwxbjz.png",
+  },
+  {
+    name: "JN creations",
+    blurb: "Seller of exquisite ornaments, adding charm and elegance to everyday occasions.",
+    logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788711528/JN_Creations_y4suxz.jpg",
+  },
+  {
+    name: "Fuszz Studio",
+    blurb: "Fussz Studo is a creative brand that turns personal memories into unique, handcrafted keepsakes. They specialize in custom-made products that capture the essence of special moments, allowing customers to preserve their cherished memories in a tangible and artistic way.",
+    logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788885497/Fussz_Studios_ndww6s.jpg",
+  },
+  {
+    name: "Moon Pearls",
+    blurb: "A trusted seller of exquisite ornaments, offering beautifully crafted pieces that add a touch of charm, elegance, and timeless sophistication to every special moment and everyday occasion.",
+    logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788885497/Moon_Pearls_tetmlh.jpg",
+  },
+  {
+    name: "Doods Holidays",
+    blurb: "Provides a wide range of tour packages and travel experiences tailored to different destinations and travel preferences.",
+    logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788976182/Doods_holidasy_lka9w1.jpg",
+  },
+  {
+    name: "Wingsonn Holidays",
+    blurb: "Offers tour packages and travel services designed to make vacations convienient, enjoyable and memorable.",
+    logo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1788976182/Winsonn_r572ur.jpg",
   },
 ];
 
@@ -155,23 +217,33 @@ export default function About() {
               Highlights and photos from REVIBE '24.
             </p>
 
-            <div className="ws-gallery-wrap" aria-label="Previous REVIBE gallery">
+            <div className="ws-drift-wall-wrap" aria-label="Previous REVIBE gallery">
               <SpiderWeb className="ws-gallery-web ws-gallery-web--center" />
               <SpiderWeb className="ws-gallery-web ws-gallery-web--tl" />
               <SpiderWeb className="ws-gallery-web ws-gallery-web--br" />
-              <div className="ws-gallery">
-                {galleryItems.map((item, index) => (
-                  <figure key={item.src} className="ws-card ws-gallery-card">
-                    <span className="ws-card-tag">{String(index + 1).padStart(2, "0")}</span>
-                    <img
-                      className="ws-gallery-img"
-                      src={item.src}
-                      alt={item.alt}
-                      loading="lazy"
-                    />
-                  </figure>
-                ))}
-              </div>
+              <DriftWall
+                items={driftWallItems}
+                columns={5}
+                tileWidth={200}
+                tileHeight={132}
+                gap={18}
+                tilt={16}
+                turn={-14}
+                perspective={1200}
+                depth={120}
+                speed={42}
+                direction="up"
+                variance={0.45}
+                parallax={0.6}
+                lift={64}
+                fade={0.6}
+                dim={0.55}
+                overlayColor="#060010"
+                radius={14}
+                roll={0}
+                pauseOnHover={false}
+                grayscale={false}
+              />
             </div>
           </div>
         </section>
@@ -514,16 +586,18 @@ export default function About() {
 
         /* ---------- gallery ---------- */
 
-        .ws-gallery-wrap {
+        .ws-drift-wall-wrap {
           position: relative;
           margin-top: 32px;
+          padding: clamp(8px, 1vw, 16px) 0 0;
+          overflow: hidden;
         }
 
         .ws-gallery-web {
           position: absolute;
-          z-index: 3;
+          z-index: 0;
           pointer-events: none;
-          opacity: 0.5;
+          opacity: 0.4;
         }
 
         .ws-gallery-web--center {
@@ -532,7 +606,7 @@ export default function About() {
           width: 260px;
           height: 260px;
           transform: translate(-50%, -50%);
-          opacity: 0.3;
+          opacity: 0.28;
         }
 
         .ws-gallery-web--tl {
@@ -548,92 +622,6 @@ export default function About() {
           width: 120px;
           height: 120px;
           transform: rotate(180deg);
-        }
-
-        .ws-gallery {
-          position: relative;
-          z-index: 2;
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 16px;
-        }
-
-        .ws-gallery-card {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 12px;
-          min-height: 160px;
-          padding: 16px;
-          border: 1px solid rgba(220, 0, 0, 0.35);
-          border-radius: 16px;
-          background:
-            linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.55));
-          box-shadow:
-            0 10px 30px rgba(0, 0, 0, 0.08),
-            inset 0 1px 0 rgba(255, 255, 255, 0.8);
-          overflow: hidden;
-          transition: box-shadow 0.2s ease, transform 0.2s ease;
-        }
-
-        .ws-gallery-card::after {
-          content: "";
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 3px;
-          background: linear-gradient(90deg, transparent, rgba(220, 0, 0, 0.5), transparent);
-        }
-
-        .ws-gallery-card:hover,
-        .ws-gallery-card:focus-within {
-          transform: translateY(-3px);
-          box-shadow:
-            0 14px 34px rgba(0, 0, 0, 0.12),
-            inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        }
-
-        .ws-card-tag {
-          position: relative;
-          z-index: 1;
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 0.8rem;
-          font-weight: 400;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: #0d0d0d;
-          background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(220, 0, 0, 0.06));
-          border: 1px solid rgba(220, 0, 0, 0.45);
-          border-radius: 8px;
-          padding: 0.45rem 0.8rem;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .ws-gallery-note {
-          position: relative;
-          z-index: 1;
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 0.78rem;
-          letter-spacing: 0.08em;
-          color: #5b403f;
-          text-transform: uppercase;
-        }
-
-        .ws-gallery-card figure,
-        figure.ws-gallery-card {
-          margin: 0;
-          padding: 12px;
-        }
-
-        .ws-gallery-img {
-          position: relative;
-          z-index: 1;
-          width: 100%;
-          height: 220px;
-          object-fit: cover;
-          border-radius: 10px;
-          display: block;
         }
 
         /* ---------- sponsors ---------- */
@@ -768,10 +756,6 @@ export default function About() {
             padding-inline: 32px;
           }
 
-          .ws-gallery {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-          }
-
           .ws-sponsors-grid {
             margin-top: 28px;
           }
@@ -813,11 +797,6 @@ export default function About() {
             padding: 96px 0;
           }
 
-          .ws-gallery {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 24px;
-          }
-
           .ws-sponsors-grid {
             gap: 16px;
           }
@@ -826,15 +805,6 @@ export default function About() {
           .ws-gallery-web--br {
             width: 180px;
             height: 180px;
-          }
-
-          .ws-gallery-card {
-            min-height: 200px;
-            padding: 24px;
-          }
-
-          .ws-gallery-img {
-            height: 260px;
           }
 
           .ws-sponsor-card {

@@ -64,7 +64,7 @@ const teams = [
     blurb:
       "The wordsmiths of the web, spinning the narrative thread that runs through every page.",
     members: [
-      { name: "Shafifa Naaz", dept: "IV Year IT", lead: true, photo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1787941459/Shaffu_Naaz_fpygq3.jpg" },
+      { name: "Shafifa Naaz", dept: "IV Year IT", lead: true, photo: "" },
       { name: "Samiiksha C", dept: "III Year CSE", photo: "https://res.cloudinary.com/dnbifmfhl/image/upload/v1774977981/WhatsApp_Image_2026-03-31_at_10.45.05_PM_rzanjh.jpg" },
       { name: "Sanga Illakiya. S", dept: "II Year CSE", photo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1787935199/Sanga_Ilakiya_mhftws.png" },
     ],
@@ -77,7 +77,7 @@ const teams = [
       "The amplifiers of the web, carrying the signal of REVIBE '26 across every channel.",
     members: [
       { name: "Mohammed Abuzar", dept: "IV Year CSE", role: "Social Media Lead", lead: true, photo: "https://res.cloudinary.com/dbqjkjl0c/image/upload/v1788170104/ABUZPIC2_elgeqj.jpg" },
-      { name: "Mohammed Sufyaan", dept: "II Year IT", photo:"https://res.cloudinary.com/djm8qhle1/image/upload/v1788339110/1000161921_-_Mohammed_Sufyaan_Z_lndfii.png"},
+      { name: "Mohammed Sufyaan", dept: "II Year IT", photo:"https://res.cloudinary.com/djm8qhle1/image/upload/v1789031179/IMG-20260910-WA0004_pyzxpe.jpg"},
       { name: "S Mohammed Saad", dept: "II Year AI-DS", photo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1787935208/S_MOHAMMED_SAAD_h03juj.png" },
       { name: "Mohammed Fahad Khan FM", dept: "II Year IT", photo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1787935189/Fahad_Khan_gtft9u.png" },
       { name: "A Muhammed Saad", dept: "II Year IT", photo: "https://res.cloudinary.com/djm8qhle1/image/upload/v1787935198/A_Muhammad_Saad_dqvnob.jpg " },

@@ -137,6 +137,7 @@ const eventData = [
     rules: [
       "Each team can consist of a maximum of 2 participants.",
       "Each team will be given a maximum of 7 minutes to pitch their business idea.",
+      "Prototype is mandatory; if unavailable, teams must present a PPT.",
       "The pitch must clearly explain the problem, proposed solution, target audience, USP, and business model.",
       "Every team must explain a viable revenue model and how their idea can generate sustainable revenue.",
       "Participants may present a prototype, mock-up, demo, or MVP of their proposed product/service to support their pitch.",
