@@ -551,13 +551,13 @@ export default function EventDetails() {
 
             {/* ACTIONS */}
             <div className="ed-actions">
-              <Link
+              {/* <Link
                 to={`/register?event=${event.slug}`}
                 className="ed-btn ed-btn--primary"
               >
                 Register Now
                 <span className="ed-btn-arrow">→</span>
-              </Link>
+              </Link> */}
 
               <Link
                 to="/events"

@@ -46,9 +46,9 @@ export default function Canteen() {
             </p>
 
             <div className="cn-cta-row">
-              <Link to="/events" className="cn-primary-btn">
+              {/* <Link to="/events" className="cn-primary-btn">
                 Register Now
-              </Link>
+              </Link> */}
             </div>
           </div>
         </section>

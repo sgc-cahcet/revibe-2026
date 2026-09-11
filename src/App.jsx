@@ -15,7 +15,7 @@ import Location from "./pages/Location";
 import Login from "./pages/Login";
 import CoordinatorDashboard from "./pages/CoordinatorDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
-import Register from "./pages/Register";
+// import Register from "./pages/Register";
 import OD from "./pages/OD";
 import Canteen from "./pages/Canteen";
 import Confirmation from "./pages/Confirmation";
@@ -57,7 +57,7 @@ function App() {
               }
             />
 
-            <Route path="/register" element={<Register />} />
+            {/* <Route path="/register" element={<Register />} /> */}
             <Route path="/od" element={<OD />} />
             <Route path="/canteen" element={<Canteen />} />
 
