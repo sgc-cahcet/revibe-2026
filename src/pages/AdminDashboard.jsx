@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "../services/supabase";
+import ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
 
 /* =========================================================
    REVIBE '26 EVENTS
@@ -376,6 +378,108 @@ function getParticipantCountForEvent(row, eventSlug) {
 
 function getEventRows(rows, eventSlug) {
   return rows.filter((row) => Boolean(getEventEntry(row, eventSlug)));
+}
+
+/* =========================================================
+   EXPORT TO EXCEL
+========================================================= */
+
+async function exportToExcel(rows, eventLabel) {
+  const workbook = new ExcelJS.Workbook();
+  const sheet = workbook.addWorksheet("Registrations");
+
+  const columns = [
+    { key: "serialNo", width: 10 },
+    { key: "name", width: 30 },
+    { key: "college", width: 35 },
+    { key: "department", width: 25 },
+    { key: "phone", width: 18 },
+    { key: "paidStatus", width: 14 },
+  ];
+  sheet.columns = columns;
+
+  sheet.mergeCells("A1:F1");
+  const titleCell = sheet.getCell("A1");
+  titleCell.value = "REVIBE '26";
+  titleCell.font = { size: 20, bold: true, color: { argb: "FFEF4444" } };
+  titleCell.alignment = { horizontal: "center", vertical: "middle" };
+  titleCell.height = 36;
+
+  sheet.mergeCells("A2:F2");
+  const eventCell = sheet.getCell("A2");
+  eventCell.value = eventLabel || "All Events";
+  eventCell.font = { size: 12, color: { argb: "FF666666" } };
+  eventCell.alignment = { horizontal: "center", vertical: "middle" };
+  eventCell.height = 24;
+
+  sheet.getRow(3).height = 10;
+
+  const headerRow = sheet.getRow(4);
+  const headers = ["Serial No", "Name", "College Name", "Department", "Phone Number", "Paid Status"];
+  headers.forEach((h, i) => {
+    const cell = headerRow.getCell(i + 1);
+    cell.value = h;
+    cell.font = { bold: true, color: { argb: "FFFFFFFF" }, size: 11 };
+    cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFEF4444" } };
+    cell.alignment = { horizontal: "left", vertical: "middle" };
+    cell.border = {
+      top: { style: "thin" },
+      bottom: { style: "thin" },
+      left: { style: "thin" },
+      right: { style: "thin" },
+    };
+  });
+  headerRow.height = 28;
+
+  let serialNo = 1;
+
+  rows.forEach((row) => {
+    const participants = getAllParticipants(row);
+    const list = participants.length > 0 ? participants : [normalizeParticipant({
+      name: row?.full_name,
+      email: row?.email,
+      phone: row?.phone,
+      college_name: row?.college_name,
+      department: row?.department,
+    })];
+
+    list.forEach((p) => {
+      const dataRow = sheet.addRow({
+        serialNo,
+        name: p.name || p.full_name || "—",
+        college: p.college_name || "—",
+        department: p.department || "—",
+        phone: p.phone || "—",
+        paidStatus: isPaid(row) ? "Paid" : "Pending",
+      });
+      dataRow.height = 22;
+      dataRow.eachCell((cell) => {
+        cell.border = {
+          top: { style: "thin", color: { argb: "FFE5E6EA" } },
+          bottom: { style: "thin", color: { argb: "FFE5E6EA" } },
+          left: { style: "thin", color: { argb: "FFE5E6EA" } },
+          right: { style: "thin", color: { argb: "FFE5E6EA" } },
+        };
+        cell.alignment = { vertical: "middle" };
+      });
+      const paidCell = dataRow.getCell("paidStatus");
+      if (isPaid(row)) {
+        paidCell.font = { bold: true, color: { argb: "FF16A34A" } };
+      } else {
+        paidCell.font = { bold: true, color: { argb: "FFDC2626" } };
+      }
+      serialNo++;
+    });
+  });
+
+  const buffer = await workbook.xlsx.writeBuffer();
+  const blob = new Blob([buffer], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  });
+  const filename = eventLabel
+    ? `revibe26-${eventLabel.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-registrations.xlsx`
+    : "revibe26-all-registrations.xlsx";
+  saveAs(blob, filename);
 }
 
 /* =========================================================
@@ -1784,6 +1888,16 @@ export default function AdminDashboard() {
                 type="button"
                 className="secondary-button"
                 onClick={() =>
+                  exportToExcel(eventRows, event?.label)
+                }
+              >
+                Export Excel
+              </button>
+
+              <button
+                type="button"
+                className="secondary-button"
+                onClick={() =>
                   setSelectedEventSlug(null)
                 }
               >
@@ -2025,6 +2139,16 @@ export default function AdminDashboard() {
           </div>
 
           <div className="header-actions">
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={() =>
+                exportToExcel(rows, null)
+              }
+            >
+              Export Excel
+            </button>
+
             <button
               type="button"
               className="secondary-button"
