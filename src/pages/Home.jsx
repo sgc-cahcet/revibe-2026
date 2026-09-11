@@ -100,13 +100,24 @@ export default function Home() {
                 )}
               </div>
 
+              <div className="announcement-block">
+                <div className="announcement-marquee">
+                  <span className="announcement-marquee-text">
+                    Online Registrations are closed&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;Online Registrations are closed&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+                  </span>
+                </div>
+                <p className="announcement-subtext">
+                  On Spot Registrations will be opened tomorrow on 9:00 AM
+                </p>
+              </div>
+
               <div className="cta-row">
                 <Link to="/events" className="primary-btn">
                   Enter the Web
                 </Link>
-                <Link to="/register" className="secondary-btn">
+                {/* <Link to="/register" className="secondary-btn">
                   Register
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
@@ -428,6 +439,51 @@ export default function Home() {
         .countdown-block > *:not(.corner-web) {
           position: relative;
           z-index: 1;
+        }
+
+        /* =====================================================
+           ANNOUNCEMENT MARQUEE
+           ===================================================== */
+
+        .announcement-block {
+          margin-top: 2rem;
+        }
+
+        .announcement-marquee {
+          overflow: hidden;
+          white-space: nowrap;
+          background: #dc0000;
+          border: 2px solid #0d0d0d;
+          border-radius: 999px;
+          padding: 0.7rem 0;
+          max-width: 520px;
+          margin: 0 auto;
+        }
+
+        .announcement-marquee-text {
+          display: inline-block;
+          font-family: 'Anton', sans-serif;
+          font-size: 1rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #ffffff;
+          animation: marquee-scroll 10s linear infinite;
+          padding-left: 100%;
+        }
+
+        @keyframes marquee-scroll {
+          0%   { transform: translateX(0%); }
+          100% { transform: translateX(-100%); }
+        }
+
+        .announcement-subtext {
+          margin: 0.8rem 0 0;
+          font-family: 'Anton', sans-serif;
+          font-size: clamp(0.85rem, 2vw, 1.1rem);
+          letter-spacing: 0.06em;
+          color: #0d0d0d;
+          text-transform: uppercase;
+          text-align: center;
         }
 
         /* =====================================================

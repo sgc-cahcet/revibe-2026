@@ -10,7 +10,7 @@ const VALID_ROUTES = [
   "/location",
   "/login",
   "/coordinator",
-  "/register",
+  // "/register",
 ];
 
 function getSuggestion(pathname) {
@@ -26,7 +26,7 @@ function getSuggestion(pathname) {
     location: "/location",
     venue: "/location",
     login: "/login",
-    register: "/register",
+    // register: "/register",
     coordinator: "/coordinator",
   };
   return map[lower] || null;

@@ -36,9 +36,9 @@ export default function OD() {
             </h1>
 
             <div className="od-cta-row">
-              <Link to="/events" className="od-primary-btn">
+              {/* <Link to="/events" className="od-primary-btn">
                 Register Now
-              </Link>
+              </Link> */}
             </div>
           </div>
         </section>
