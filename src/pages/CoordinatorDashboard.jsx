@@ -409,6 +409,10 @@ function exportToPDF(rows, eventLabel) {
   doc.setTextColor(100, 100, 100);
   doc.text(eventLabel || "All Events", pageWidth / 2, 26, { align: "center" });
 
+  doc.setDrawColor(200, 200, 200);
+  doc.setLineWidth(0.4);
+  doc.line(30, 30, pageWidth - 30, 30);
+
   const tableData = [];
   let serialNo = 1;
 
@@ -483,7 +487,7 @@ function exportToPDF(rows, eventLabel) {
         }
       }
     },
-    margin: { left: 8, right: 8 },
+    margin: { left: 37, right: 37 },
   });
 
   const filename = eventLabel
