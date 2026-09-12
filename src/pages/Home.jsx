@@ -69,13 +69,13 @@ export default function Home() {
                 web-powered experience.
               </p>
 
-              <div className="hero-meta" aria-label="REVIBE '26 event overview">
+              {/* <div className="hero-meta" aria-label="REVIBE '26 event overview">
                 <span className="meta-chip">13 Events</span>
                 <span className="meta-chip meta-chip--red">6 Technical</span>
                 <span className="meta-chip">7 Non-Technical</span>
-              </div>
+              </div> */}
 
-              <div className="countdown-block" aria-label="Time until REVIBE '26 begins">
+              {/* <div className="countdown-block" aria-label="Time until REVIBE '26 begins">
                 <SpiderWeb className="corner-web timer-web-tr" />
                 {ended ? (
                   <p className="countdown-ended">The web has awakened.</p>
@@ -98,9 +98,9 @@ export default function Home() {
                     </p>
                   </>
                 )}
-              </div>
+              </div> */}
 
-              <div className="announcement-block">
+              {/* <div className="announcement-block">
                 <div className="announcement-marquee">
                   <span className="announcement-marquee-text">
                     Online Registrations are closed&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;Online Registrations are closed&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
@@ -109,15 +109,32 @@ export default function Home() {
                 <p className="announcement-subtext">
                   On Spot Registrations will be opened tomorrow on 9:00 AM
                 </p>
-              </div>
+              </div> */}
 
-              <div className="cta-row">
+              {/* <div className="cta-row">
                 <Link to="/events" className="primary-btn">
                   Enter the Web
                 </Link>
-                {/* <Link to="/register" className="secondary-btn">
+                <Link to="/register" className="secondary-btn">
                   Register
-                </Link> */}
+                </Link>
+              </div> */}
+
+              <div className="announcement-block">
+                <p className="event-ended-message">
+                  The web we spun together has come to an end.
+                </p>
+                <p className="event-ended-thanks">
+                  With great power comes great responsibility, and you all
+                  brought both to Revibe '26. Thank you to every participant
+                  who swung into action and made this National Level Symposium
+                  an incredible journey.
+                </p>
+                <div className="cta-row">
+                  <span className="primary-btn">
+                    Until the next adventure, keep swinging.
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -483,6 +500,37 @@ export default function Home() {
           letter-spacing: 0.06em;
           color: #0d0d0d;
           text-transform: uppercase;
+          text-align: center;
+        }
+
+        /* =====================================================
+           EVENT ENDED
+           ===================================================== */
+
+        .event-ended-message {
+          margin: 0;
+          font-family: 'Anton', sans-serif;
+          font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+          letter-spacing: 0.08em;
+          color: #dc0000;
+          text-transform: uppercase;
+          text-align: center;
+          padding: 0.7rem 1.25rem;
+          background: rgba(220, 0, 0, 0.08);
+          border: 2px solid #dc0000;
+          border-radius: 999px;
+          max-width: 560px;
+          margin: 0 auto;
+        }
+
+        .event-ended-thanks {
+          margin: 1rem auto 0;
+          max-width: 600px;
+          font-family: 'Hanken Grotesk', sans-serif;
+          font-weight: 400;
+          font-size: 1rem;
+          line-height: 1.65;
+          color: #0d0d0d;
           text-align: center;
         }
 
